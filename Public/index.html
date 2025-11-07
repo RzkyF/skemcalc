@@ -1,180 +1,352 @@
 <!DOCTYPE html>
-<html lang="id"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Kalkulator Konsumsi kWh Tahunan</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<link rel="stylesheet" href="/Assets/style.css">
-<script src="js/config.js"></script>
-</head>
-<body class="font-display bg-white text-text-primary">
-<div class="flex flex-col min-h-screen">
-<main class="flex-grow">
-<div class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-<header class="mb-12">
-<div class="flex justify-between items-start">
-<img alt="Vertex Global Indonesia Logo" class="h-16" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT4xkhdu-kynFh0IDhG7WNRzk7uM0St3udsR-7SJ7sZzCtBd9cbh2vat5f680W9cr9jYi8bqUa7rqaGwkYNYeJRUKu1YQJZafARIkw3nhGniWnGqsxKw8Wrw4lk5vYY93LPU_z-t80A_o4Ib53gKH2U6SlbX9WTkG_VGXiqLa2rcW8VjjANuW-Alz0q8RgfEzh-n5fcgCmzlKQFFtg-lpSUry3o8aQscSyV12s_Yi-YGHKwSHf57J35so8Oj4wT617ej18roFB_5s"/>
-<div class="flex items-center space-x-2">
-<button class="font-bold text-primary py-1 px-2 rounded-md bg-primary/10">ID</button>
-<button class="font-bold text-gray-400 py-1 px-2 rounded-md hover:bg-gray-100">ENG</button>
-</div>
-</div>
-<div class="text-center mt-4">
-<h1 class="text-4xl font-extrabold text-primary mb-2">Kalkulator Konsumsi kWh Tahunan</h1>
-<p class="text-lg text-gray-600">Hitung konsumsi kWh tahunan agar Anda dapat memilih peralatan hemat energi dengan bijak.</p>
-</div>
-</header>
-<div class="space-y-12">
-<section>
-<h2 class="text-2xl font-bold text-text-primary mb-6">1. Pilih Peralatan</h2>
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-<button class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow">
-<span class="material-symbols-outlined text-gray-500 text-4xl mb-2">air</span>
-<span class="text-base font-bold text-gray-700">Kipas Angin</span>
-</button>
-<button class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow">
-<span class="material-symbols-outlined text-gray-500 text-4xl mb-2">kitchen</span>
-<span class="text-base font-bold text-gray-700">Kulkas</span>
-</button>
-<button class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow">
-<span class="material-symbols-outlined text-gray-500 text-4xl mb-2">lightbulb</span>
-<span class="text-base font-bold text-gray-700">Lampu LED</span>
-</button>
-<button class="flex flex-col items-center justify-center p-6 bg-white border-2 border-primary rounded-lg shadow-sm hover:shadow-md transition-shadow">
-<span class="material-symbols-outlined text-primary text-4xl mb-2">multicooker</span>
-<span class="text-base font-bold text-primary">Penanak Nasi</span>
-</button>
-<button class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow">
-<span class="material-symbols-outlined text-gray-500 text-4xl mb-2">tv</span>
-<span class="text-base font-bold text-gray-700">TV</span>
-</button>
-<button class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow">
-<span class="material-symbols-outlined text-gray-500 text-4xl mb-2">floor_lamp</span>
-<span class="text-base font-bold text-gray-700">LED Luminair</span>
-</button>
-<button class="relative flex flex-col items-center justify-center p-6 bg-gray-100 border border-gray-200 rounded-lg shadow-sm cursor-not-allowed" disabled="">
-<div class="absolute top-1 right-1 bg-yellow-400 text-yellow-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                                    Maintenance
-                                </div>
-<span class="material-symbols-outlined text-gray-400 text-4xl mb-2">water_heater</span>
-<span class="text-base font-bold text-gray-400">Water Dispenser</span>
-</button>
-</div>
-</section>
-<section>
-<h2 class="text-2xl font-bold text-text-primary mb-6">2. Masukkan Detail Penggunaan</h2>
-<div class="bg-white border border-border-color rounded-lg p-8 shadow-sm">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-<div>
-<label class="block text-sm font-bold text-gray-700 mb-2" for="wattage_cook">Konsumsi Energi Memasak</label>
-<div class="relative">
-<input class="w-full pl-4 pr-12 py-3 border border-border-color rounded-lg focus:ring-primary focus:border-primary" id="wattage_cook" name="wattage_cook" type="number" value="250"/>
-<span class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-500">Wh</span>
-</div>
-<p class="text-xs text-gray-500 mt-2">Energi yang dibutuhkan untuk 1x memasak.</p>
-</div>
-<div>
-<label class="block text-sm font-bold text-gray-700 mb-2" for="wattage_warm">Konsumsi Energi Menghangatkan</label>
-<div class="relative">
-<input class="w-full pl-4 pr-12 py-3 border border-border-color rounded-lg focus:ring-primary focus:border-primary" id="wattage_warm" name="wattage_warm" type="number" value="50"/>
-<span class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-500">Wh/jam</span>
-</div>
-<p class="text-xs text-gray-500 mt-2">Energi yang dibutuhkan untuk menghangatkan per jam.</p>
-</div>
-<div>
-<label class="block text-sm font-bold text-gray-700 mb-2" for="cook_cycles">Jumlah kali memasak per hari</label>
-<div class="relative">
-<input class="w-full px-4 py-3 border border-border-color rounded-lg focus:ring-primary focus:border-primary" id="cook_cycles" name="cook_cycles" type="number" value="1"/>
-</div>
-</div>
-<div>
-<label class="block text-sm font-bold text-gray-700 mb-2" for="warm_hours">Jam menghangatkan per hari</label>
-<div class="relative">
-<input class="w-full px-4 py-3 border border-border-color rounded-lg focus:ring-primary focus:border-primary" id="warm_hours" name="warm_hours" type="number" value="5"/>
-</div>
-</div>
-<div class="md:col-span-2 pt-2">
-<div class="flex justify-between items-center mb-2">
-<label class="text-sm font-bold text-gray-700" for="days">Hari Pemakaian per Tahun</label>
-<span class="px-2 py-1 bg-primary/10 text-primary font-bold text-sm rounded-md">365 hari</span>
-</div>
-<input class="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer slider-thumb" id="days" max="365" min="0" name="days" style="--thumb-color: #015592;" type="range" value="365"/>
-</div>
-</div>
-</div>
-</section>
-<section>
-<h2 class="text-2xl font-bold text-text-primary mb-6">3. Verifikasi Perhitungan</h2>
-<div class="bg-white border border-border-color rounded-lg p-6 shadow-sm">
-<div class="flex items-center justify-center">
-<div class="bg-gray-100 rounded-md shadow-sm p-3 inline-block">
-<div class="flex items-start space-x-4 bg-white p-3 border rounded">
-<div class="flex items-center h-full pt-1">
-<input class="h-6 w-6 rounded border-gray-300 text-primary focus:ring-primary" id="recaptcha-checkbox" type="checkbox"/>
-</div>
-<div>
-<label class="font-medium text-gray-800" for="recaptcha-checkbox">Saya bukan robot</label>
-</div>
-<div class="ml-auto text-center">
-<img alt="reCAPTCHA logo" class="h-10 w-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDfDiJ9PTcO4ymp5Ea5yzVuivZit0SCaqh5O30k_k0detuh88eIQEZ9_h3l9v6I4WkTUhejHg4E5_MYl7_OnYpCXQ0Eyw6FZm5SsWXtb1LokPRVY2bjGknAdx-IT4cwakzKoi0MqpTZYgtixaTrGtOeJ-59xRNzxIP4roAozPNu0kctBBB6ImtuohRhkd5Qf_ep50p59m1B14knRI2TmPJR5e4sa0eAZriMHvwQWJnRe8aFImWQJ_cUtnRntvJ4L69z7m4bieUvTI"/>
-<p class="text-[10px] text-gray-500 mt-1">reCAPTCHA</p>
-<p class="text-[8px] text-gray-400">Privasi - Ketentuan</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section>
-<h2 class="text-2xl font-bold text-text-primary mb-6">4. Estimasi Hasil Anda</h2>
-<div class="bg-primary/5 border-l-4 border-secondary rounded-lg p-8 shadow-sm">
-<div class="flex flex-col md:flex-row md:items-center md:justify-between">
-<div class="text-center md:text-left">
-<p class="text-lg font-semibold text-gray-700">Konsumsi Tahunan</p>
-<div class="flex items-center justify-center md:justify-start space-x-2 mt-2">
-<div class="flex items-baseline space-x-2">
-<span class="text-5xl font-extrabold text-primary">144.54</span>
-<span class="text-xl font-bold text-gray-600">kWh/tahun</span>
-</div>
-<button class="p-2 text-gray-500 rounded-full hover:bg-primary/10 hover:text-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors" title="Salin ke clipboard">
-<span class="material-symbols-outlined">content_copy</span>
-</button>
-</div>
-</div>
-<button class="mt-6 md:mt-0 w-full md:w-auto bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                                    Hitung
-                                </button>
-</div>
-<div class="mt-6 pt-6 border-t border-border-color">
-<p class="text-sm text-gray-600"><span class="font-bold">Cara menghitung:</span> (Total Wh Harian × Hari Pemakaian per Tahun) / 1000</p>
-</div>
-</div>
-</section>
-</div>
-<section class="mt-16">
-<a class="block bg-primary text-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow" href="#">
-<div class="flex flex-col md:flex-row items-center justify-between gap-6">
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-secondary text-5xl">verified</span>
-<div>
-<h3 class="text-xl font-bold">Butuh Jasa Sertifikasi?</h3>
-<p class="text-base opacity-90">Kami menyediakan layanan sertifikasi SNI dan sertifikasi hemat energi.</p>
-</div>
-</div>
-<div class="bg-secondary text-primary font-bold py-3 px-6 rounded-md whitespace-nowrap hover:bg-opacity-90 transition-colors">
-                Kunjungi Profil Kami
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Kalkulator Konsumsi kWh Tahunan</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../Assets/style.css" />
+
+    <script src="js/config.js"></script>
+  </head>
+  <body class="font-display bg-white text-text-primary">
+    <div class="flex flex-col min-h-screen">
+      <main class="flex-grow">
+        <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+          <header class="mb-12">
+            <div class="flex justify-between items-start">
+              <img class="h-24" src="../Assets/img/icon.png" />
+              <div class="flex items-center space-x-2">
+                <button
+                  class="font-bold text-primary py-1 px-2 rounded-md bg-primary/10"
+                >
+                  ID
+                </button>
+                <button
+                  class="font-bold text-gray-400 py-1 px-2 rounded-md hover:bg-gray-100"
+                >
+                  ENG
+                </button>
+              </div>
             </div>
-</div>
-</a>
-</section>
-</div>
-</main>
-<footer class="bg-gray-50 border-t border-border-color mt-16">
-<div class="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
-<p>© 2024 Kalkulator kWh. Hak cipta dilindungi undang-undang. <a class="text-primary hover:underline" href="#">Tentang Kami</a> • <a class="text-primary hover:underline" href="#">Kebijakan Privasi</a></p>
-</div>
-</footer>
-</div>
-</body></html>
+            <div class="text-center mt-4">
+              <h1 class="text-4xl font-extrabold text-primary mb-2">
+                Kalkulator Konsumsi kWh Tahunan
+              </h1>
+              <p class="text-lg text-gray-600">
+                Hitung konsumsi kWh tahunan agar Anda dapat memilih peranti
+                hemat energi dengan bijak.
+              </p>
+            </div>
+          </header>
+          <div class="space-y-12">
+            <section>
+              <h2 class="text-2xl font-bold text-text-primary mb-6">
+                1. Pilih Kategori
+              </h2>
+
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <button
+                  class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <span
+                    class="material-symbols-outlined text-gray-500 text-4xl mb-2"
+                    >air</span
+                  >
+                  <span class="text-base font-bold text-gray-700"
+                    >Kipas Angin</span
+                  >
+                </button>
+                <button
+                  class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <span
+                    class="material-symbols-outlined text-gray-500 text-4xl mb-2"
+                    >kitchen</span
+                  >
+                  <span class="text-base font-bold text-gray-700">Kulkas</span>
+                </button>
+                <button
+                  class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <span
+                    class="material-symbols-outlined text-gray-500 text-4xl mb-2"
+                    >lightbulb</span
+                  >
+                  <span class="text-base font-bold text-gray-700"
+                    >Lampu LED</span
+                  >
+                </button>
+                <button
+                  class="flex flex-col items-center justify-center p-6 bg-white border-2 border-primary rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary text-4xl mb-2"
+                    >multicooker</span
+                  >
+                  <span class="text-base font-bold text-primary"
+                    >Penanak Nasi</span
+                  >
+                </button>
+                <button
+                  class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <span
+                    class="material-symbols-outlined text-gray-500 text-4xl mb-2"
+                    >tv</span
+                  >
+                  <span class="text-base font-bold text-gray-700">TV</span>
+                </button>
+                <button
+                  class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <span
+                    class="material-symbols-outlined text-gray-500 text-4xl mb-2"
+                    >floor_lamp</span
+                  >
+                  <span class="text-base font-bold text-gray-700"
+                    >LED Luminair</span
+                  >
+                </button>
+
+                <button
+                  class="relative flex flex-col items-center justify-center p-6 bg-gray-100 border border-gray-200 rounded-lg shadow-sm cursor-not-allowed"
+                  disabled=""
+                >
+                  <div
+                    class="absolute top-1 right-1 bg-yellow-400 text-yellow-800 text-[10px] font-bold px-2 py-0.5 rounded-full"
+                  >
+                    Maintenance
+                  </div>
+                  <span
+                    class="material-symbols-outlined text-gray-400 text-4xl mb-2"
+                    >water_heater</span
+                  >
+                  <span class="text-base font-bold text-gray-400"
+                    >Water Dispenser</span
+                  >
+                </button>
+              </div>
+            </section>
+            <section>
+              <h2 class="text-2xl font-bold text-text-primary mb-6">
+                2. Masukkan Detail Penggunaan
+              </h2>
+              <div
+                class="bg-white border border-border-color rounded-lg p-8 shadow-sm"
+              >
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                  <div>
+                    <label
+                      class="block text-sm font-bold text-gray-700 mb-2"
+                      for="wattage_cook"
+                      >Konsumsi Energi Memasak</label
+                    >
+                    <div class="relative">
+                      <input
+                        class="w-full pl-4 pr-12 py-3 border border-border-color rounded-lg focus:ring-primary focus:border-primary"
+                        id="wattage_cook"
+                        name="wattage_cook"
+                        type="number"
+                        value="250"
+                        min="0"
+                      />
+                      <span
+                        class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-500"
+                        >Wh</span
+                      >
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">
+                      Daya yang dibutuhkan untuk 1x memasak.
+                    </p>
+                  </div>
+                  <div>
+                    <label
+                      class="block text-sm font-bold text-gray-700 mb-2"
+                      for="wattage_warm"
+                      >Daya yang dibutuhkan untuk Menghangatkan</label
+                    >
+                    <div class="relative">
+                      <input
+                        class="w-full pl-4 pr-12 py-3 border border-border-color rounded-lg focus:ring-primary focus:border-primary"
+                        id="wattage_warm"
+                        min="0"
+                        name="wattage_warm"
+                        type="number"
+                        value="50"
+                      />
+                      <span
+                        class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-500"
+                        >Wh/jam</span
+                      >
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">
+                      Energi yang dibutuhkan untuk menghangatkan per jam.
+                    </p>
+                  </div>
+                  <div>
+                    <label
+                      class="block text-sm font-bold text-gray-700 mb-2"
+                      for="cook_cycles"
+                      >Jumlah kali memasak per hari</label
+                    >
+                    <div class="relative">
+                      <input
+                        class="w-full px-4 py-3 border border-border-color rounded-lg focus:ring-primary focus:border-primary"
+                        id="cook_cycles"
+                        name="cook_cycles"
+                        type="number"
+                        value="1"
+                        min="0"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      class="block text-sm font-bold text-gray-700 mb-2"
+                      for="warm_hours"
+                      >Jam menghangatkan per hari</label
+                    >
+                    <div class="relative">
+                      <input
+                        class="w-full px-4 py-3 border border-border-color rounded-lg focus:ring-primary focus:border-primary"
+                        id="warm_hours"
+                        name="warm_hours"
+                        type="number"
+                        value="5"
+                        min="0"
+                      />
+                    </div>
+                  </div>
+                  <div class="md:col-span-2 pt-2">
+                    <div class="flex justify-between items-center mb-2">
+                      <label class="text-sm font-bold text-gray-700" for="days"
+                        >Hari Pemakaian per Tahun</label
+                      >
+                      <span
+                        class="px-2 py-1 bg-primary/10 text-primary font-bold text-sm rounded-md"
+                        >365 hari</span
+                      >
+                    </div>
+                    <input
+                      class="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer slider-thumb"
+                      id="rangeDays"
+                      max="365"
+                      min="0"
+                      name="days"
+                      style="--thumb-color: #015592"
+                      type="range"
+                      value="365"
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section>
+              <h2 class="text-2xl font-bold text-text-primary mb-6">
+                3. Estimasi Hasil
+              </h2>
+              <div
+                class="bg-primary/5 border-l-4 border-secondary rounded-lg p-8 shadow-sm"
+              >
+                <div
+                  class="flex flex-col md:flex-row md:items-center md:justify-between"
+                >
+                  <div class="text-center md:text-left">
+                    <p class="text-lg font-semibold text-gray-700">
+                      Konsumsi Tahunan
+                    </p>
+                    <div
+                      class="flex items-center justify-center md:justify-start space-x-2 mt-2"
+                    >
+                      <div class="flex items-baseline space-x-2">
+                        <span class="text-5xl font-extrabold text-primary"
+                          >144.54</span
+                        >
+                        <span class="text-xl font-bold text-gray-600"
+                          >kWh/tahun</span
+                        >
+                      </div>
+
+                      <button
+                        class="p-2 text-gray-500 rounded-full hover:bg-primary/10 hover:text-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
+                        title="Salin ke clipboard"
+                      >
+                        <span class="material-symbols-outlined"
+                          >content_copy</span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                  <button
+                    class="mt-6 md:mt-0 w-full md:w-auto bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                  >
+                    Hitung
+                  </button>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-border-color">
+                  <p class="text-sm text-gray-600">
+                    <span class="font-bold">Cara menghitung:</span> (Total Daya
+                    × Hari Pemakaian per Tahun) / 1000
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
+          <section class="mt-16">
+            <a
+              class="block bg-primary text-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow"
+              href="https://vertexglobal.id"
+            >
+              <div
+                class="flex flex-col md:flex-row items-center justify-between gap-6"
+              >
+                <div class="flex items-center gap-4">
+                  <span
+                    class="material-symbols-outlined text-secondary text-5xl"
+                    >verified</span
+                  >
+                  <div>
+                    <h3 class="text-xl font-bold">Butuh Jasa Sertifikasi?</h3>
+                    <p class="text-base opacity-90">
+                      Kami menyediakan layanan sertifikasi SNI dan sertifikasi
+                      hemat energi.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="bg-secondary text-primary font-bold py-3 px-6 rounded-md whitespace-nowrap hover:bg-opacity-90 transition-colors"
+                >
+                  Kunjungi Profil Kami
+                </div>
+              </div>
+            </a>
+          </section>
+        </div>
+      </main>
+      <footer class="bg-gray-50 border-t border-border-color mt-16">
+        <div
+          class="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8 text-center text-sm text-gray-500"
+        >
+          <p>
+            © 2024 Kalkulator kWh. Hak cipta dilindungi undang-undang.
+            <a class="text-primary hover:underline" href="#">Tentang Kami</a> •
+            <a class="text-primary hover:underline" href="#"
+              >Kebijakan Privasi</a
+            >
+          </p>
+        </div>
+      </footer>
+    </div>
+    <script src="../Public/js/function.js"></script>
+  </body>
+</html>
