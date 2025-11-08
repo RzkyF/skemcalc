@@ -13,7 +13,7 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/Assets/style.css" />
+    <link rel="stylesheet" href="../Assets/style.css" />
 
     <script src="js/config.js"></script>
   </head>
@@ -23,7 +23,7 @@
         <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
           <header class="mb-12">
             <div class="flex justify-between items-start">
-              <img class="h-24" src="/Assets/img/icon.png" />
+              <img class="h-24" src="../Assets/img/icon.png" />
               <div class="flex items-center space-x-2">
                 <button
                   class="font-bold text-primary py-1 px-2 rounded-md bg-primary/10"
@@ -147,14 +147,14 @@
                   <div>
                     <label
                       class="block text-sm font-bold text-gray-700 mb-2"
-                      for="wattage_cook"
+                      for="DayaMemasak"
                       >Konsumsi Energi Memasak</label
                     >
                     <div class="relative">
                       <input
                         class="w-full pl-4 pr-12 py-3 border border-border-color rounded-lg focus:ring-primary focus:border-primary"
-                        id="wattage_cook"
-                        name="wattage_cook"
+                        id="DayaMemasak"
+                        name="DayaMemasak"
                         type="number"
                         value="250"
                         min="0"
@@ -171,15 +171,15 @@
                   <div>
                     <label
                       class="block text-sm font-bold text-gray-700 mb-2"
-                      for="wattage_warm"
+                      for="DayaMenghangatkan"
                       >Daya yang dibutuhkan untuk Menghangatkan</label
                     >
                     <div class="relative">
                       <input
                         class="w-full pl-4 pr-12 py-3 border border-border-color rounded-lg focus:ring-primary focus:border-primary"
-                        id="wattage_warm"
+                        id="DayaMenghangatkan"
                         min="0"
-                        name="wattage_warm"
+                        name="DayaMenghangatkan"
                         type="number"
                         value="50"
                       />
@@ -195,14 +195,14 @@
                   <div>
                     <label
                       class="block text-sm font-bold text-gray-700 mb-2"
-                      for="cook_cycles"
+                      for="SiklusMemasak"
                       >Jumlah kali memasak per hari</label
                     >
                     <div class="relative">
                       <input
                         class="w-full px-4 py-3 border border-border-color rounded-lg focus:ring-primary focus:border-primary"
-                        id="cook_cycles"
-                        name="cook_cycles"
+                        id="SiklusMemasak"
+                        name="SiklusMemasak"
                         type="number"
                         value="1"
                         min="0"
@@ -212,14 +212,14 @@
                   <div>
                     <label
                       class="block text-sm font-bold text-gray-700 mb-2"
-                      for="warm_hours"
+                      for="SiklusMenghangatkan"
                       >Jam menghangatkan per hari</label
                     >
                     <div class="relative">
                       <input
                         class="w-full px-4 py-3 border border-border-color rounded-lg focus:ring-primary focus:border-primary"
-                        id="warm_hours"
-                        name="warm_hours"
+                        id="SiklusMenghangatkan"
+                        name="SiklusMenghangatkan"
                         type="number"
                         value="5"
                         min="0"
@@ -238,7 +238,7 @@
                     </div>
                     <input
                       class="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer slider-thumb"
-                      id="rangeDays"
+                      id="jumlahPenggunaan"
                       max="365"
                       min="0"
                       name="days"
@@ -268,9 +268,13 @@
                       class="flex items-center justify-center md:justify-start space-x-2 mt-2"
                     >
                       <div class="flex items-baseline space-x-2">
-                        <span class="text-5xl font-extrabold text-primary"
-                          >144.54</span
-                        >
+                        <span class="text-5xl font-extrabold text-primary">
+                          <div
+                            class="hasil"
+                            id="hasilHitung"
+                            style="display: none"
+                          ></div
+                        ></span>
                         <span class="text-xl font-bold text-gray-600"
                           >kWh/tahun</span
                         >
@@ -287,6 +291,7 @@
                     </div>
                   </div>
                   <button
+                    id="btnHitung"
                     class="mt-6 md:mt-0 w-full md:w-auto bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                   >
                     Hitung
@@ -295,8 +300,9 @@
 
                 <div class="mt-6 pt-6 border-t border-border-color">
                   <p class="text-sm text-gray-600">
-                    <span class="font-bold">Cara menghitung:</span> (Total Daya
-                    × Hari Pemakaian per Tahun) / 1000
+                    <span class="font-bold">Cara menghitung:</span> ((Daya
+                    Memasak x Siklus Memasak) + (Daya Menghangatkan x Waktu
+                    Menghangatkan) × Hari Pemakaian per Tahun) / 1000
                   </p>
                 </div>
               </div>
