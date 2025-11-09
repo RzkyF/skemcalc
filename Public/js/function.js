@@ -1,15 +1,15 @@
 // daftar kategori dan field-nya
 const kategoriList = {
   kipas: [
-    { id: "daya", label: "Daya Kipas (W)", type: "number", satuan: "W" },
-    { id: "jampenggunaan", label: "Waktu Penggunaan", type: "number", satuan: "W", value:6.6 },
+    { id: "daya", label: "Daya Kipas (W)", type: "number", satuan: "W", value: 50 },
+    { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 6.6 },
     { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1 },
   ],
   penanaknasi: [
-    { id: "dayaMemasak", label: "Daya Memasak (Wh)", type: "number", satuan: "Wh" },
-    { id: "dayaMenghangatkan", label: "Daya Menghangatkan (Wh/jam)", type: "number", satuan: "Wh/jam" },
-    { id: "siklusMemasak", label: "Siklus Memasak per Hari", type: "number", value:1},
-    { id: "jamMenghangatkan", label: "Jam Menghangatkan per Hari", type: "number", value: 5},
+    { id: "dayaMemasak", label: "Daya Memasak (Wh)", type: "number", satuan: "Wh", value: 250 },
+    { id: "dayaMenghangatkan", label: "Daya Menghangatkan (Wh/jam)", type: "number", satuan: "Wh/jam", value: 50 },
+    { id: "siklusMemasak", label: "Siklus Memasak per Hari", type: "number", value: 1 },
+    { id: "jamMenghangatkan", label: "Jam Menghangatkan per Hari", type: "number", value: 5 },
     { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1 },
   ],
 };
@@ -17,16 +17,14 @@ const kategoriList = {
 // container input
 const inputContainer = document.getElementById("inputContainer");
 const hasilEl = document.getElementById("hasilHitung");
+const rumusEl = document.getElementById("rumusHitung"); 
 let kategoriDipilih = null;
 
 // render input sesuai kategori
 function renderInput(kategori) {
   inputContainer.innerHTML = "";
   const fields = kategoriList[kategori];
-  if (!fields) {
-    console.error("Kategori tidak ditemukan:", kategori);
-    return;
-  }
+  if (!fields) return;
 
   fields.forEach(f => {
     const div = document.createElement("div");
@@ -42,7 +40,7 @@ function renderInput(kategori) {
     } else {
       html += `
         <div class="relative">
-          <input type="${f.type}" id="${f.id}" class="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg"
+          <input type="${f.type}" id="${f.id}" class="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
             value="${f.value || ""}">
           ${f.satuan ? `<span class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-500">${f.satuan}</span>` : ""}
         </div>`;
@@ -68,17 +66,19 @@ buttons.forEach(btn => {
     kategoriDipilih = btn.dataset.cat.toLowerCase();
     renderInput(kategoriDipilih);
     hasilEl.textContent = "";
+    rumusEl.textContent = "";
     hasilEl.style.display = "none";
+    rumusEl.style.display = "none";
 
-    // reset semua tombol ke abu-abu
+    // reset style tombol
     buttons.forEach(b => {
-      b.classList.remove("border-primary-200", "text-primary");
-      b.classList.add("border-gray-200", "text-gray-500");
+      b.classList.remove("border-primary", "text-primary", "bg-primary/10");
+      b.classList.add("border-gray-200", "text-gray-700", "bg-white");
     });
 
-    // ubah tombol aktif jadi primary
-    btn.classList.remove("border-gray-200", "text-gray-500");
-    btn.classList.add("border-primary-200", "text-primary");
+    // aktifkan style tombol yg dipilih
+    btn.classList.remove("border-gray-200", "text-gray-700", "bg-white");
+    btn.classList.add("border-primary", "text-primary", "bg-primary/10");
   });
 });
 
@@ -89,8 +89,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const defaultBtn = document.querySelector('button[data-cat="kipas"]');
   if (defaultBtn) {
-    defaultBtn.classList.remove("border-gray-200", "text-gray-500");
-    defaultBtn.classList.add("border-primary-200", "text-primary");
+    defaultBtn.classList.add("border-primary", "text-primary", "bg-primary/10");
   }
 });
 
@@ -101,12 +100,17 @@ document.getElementById("btnHitung").addEventListener("click", () => {
     return;
   }
 
+  let hasil = 0;
+  let rumus = "";
+  let tahun = 1;
+
   if (kategoriDipilih === "kipas") {
     const daya = parseFloat(document.getElementById("daya").value) || 0;
-    const tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
     const jam = parseFloat(document.getElementById("jampenggunaan").value) || 0;
-    const hasil = ((daya * jam * tahun * 365) / 1000).toFixed(2);
-    animasiHitung(hasil);
+    tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
+
+    hasil = ((daya * jam * tahun * 365) / 1000).toFixed(2);
+    rumus = `( Daya(${daya} W) x Pemakaian(${jam} jam) × ${tahun} Tahun) ÷ 1000`;
   }
 
   if (kategoriDipilih === "penanaknasi") {
@@ -114,25 +118,45 @@ document.getElementById("btnHitung").addEventListener("click", () => {
     const Dh = parseFloat(document.getElementById("dayaMenghangatkan").value) || 0;
     const Sm = parseFloat(document.getElementById("siklusMemasak").value) || 0;
     const Jh = parseFloat(document.getElementById("jamMenghangatkan").value) || 0;
-    const T = parseFloat(document.getElementById("pemakaian" * 365 ).value) || 1;
-    const hasil = (((Dm * Sm) + (Dh * Jh)) * 365 * T / 1000).toFixed(2);
-    animasiHitung(hasil);
+    tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
+
+    hasil = (((Dm * Sm) + (Dh * Jh)) * 365 * tahun / 1000).toFixed(2);
+    rumus = `((${Dm} × ${Sm}) + (${Dh} × ${Jh})) × 365 × ${tahun} ÷ 1000`;
   }
+
+  // tampilkan hasil
+  const teksTahun = tahun > 1 ? ` ${tahun}` : "";
+  animasiHitung(hasil, teksTahun);
+  tampilkanRumus(rumus);
 });
 
-// animasi angka
-function animasiHitung(angka) {
+// animasi angka bergulir
+function animasiHitung(angka, teksTahun) {
   hasilEl.style.display = "block";
   let start = 0;
   const end = parseFloat(angka);
   const duration = 1000;
   const step = Math.ceil(end / (duration / 20));
+
   const counter = setInterval(() => {
     start += step;
     if (start >= end) {
       start = end;
       clearInterval(counter);
     }
-    hasilEl.textContent = start.toFixed(2);
+    hasilEl.innerHTML = `${start.toFixed(2)} <span class="text-xl font-bold text-gray-600"
+                          >Kwh /${teksTahun} Tahun</span
+                        >`;
   }, 20);
+}
+
+// tampilkan rumus
+function tampilkanRumus(rumus) {
+  rumusEl.style.display = "block";
+  rumusEl.innerHTML = `
+    <div class="mt-2 text-sm text-gray-600">
+      <span class="font-bold text-primary">Cara menghitung:</span><br>
+      <code class="bg-gray-100 px-2 py-1 rounded text-sm">${rumus}</code>
+    </div>
+  `;
 }
