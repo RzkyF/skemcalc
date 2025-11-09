@@ -14,8 +14,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../Assets/style.css" />
-
-    <script src="js/config.js"></script>
+    <script src="../Public/js/config.js"></script>
   </head>
   <body class="font-display bg-white text-text-primary">
     <div class="flex flex-col min-h-screen">
@@ -56,7 +55,8 @@
 
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <button
-                  class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                  class="kategori flex flex-col items-center justify-center p-6 bg-white border border-gray-200 border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                  data-cat="kipas"
                 >
                   <span
                     class="material-symbols-outlined text-gray-500 text-4xl mb-2"
@@ -66,18 +66,38 @@
                     >Kipas Angin</span
                   >
                 </button>
+
                 <button
-                  class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                  class="relative flex flex-col items-center justify-center p-6 bg-gray-100 border border-gray-200 rounded-lg shadow-sm cursor-not-allowed"
+                  disabled=""
                 >
+                  <div
+                    class="absolute top-1 right-1 bg-yellow-400 text-yellow-800 text-[10px] font-bold px-2 py-0.5 rounded-full"
+                  >
+                    Maintenance
+                  </div>
+                  <!-- <button
+                  class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                > -->
                   <span
                     class="material-symbols-outlined text-gray-500 text-4xl mb-2"
                     >kitchen</span
                   >
                   <span class="text-base font-bold text-gray-700">Kulkas</span>
                 </button>
+
                 <button
-                  class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                  class="relative flex flex-col items-center justify-center p-6 bg-gray-100 border border-gray-200 rounded-lg shadow-sm cursor-not-allowed"
+                  disabled=""
                 >
+                  <div
+                    class="absolute top-1 right-1 bg-yellow-400 text-yellow-800 text-[10px] font-bold px-2 py-0.5 rounded-full"
+                  >
+                    Maintenance
+                  </div>
+                  <!-- <button
+                  class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                > -->
                   <span
                     class="material-symbols-outlined text-gray-500 text-4xl mb-2"
                     >lightbulb</span
@@ -88,7 +108,8 @@
                 </button>
 
                 <button
-                  class="flex flex-col items-center justify-center p-6 bg-white border-2 border-primary rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                  class="kategori flex flex-col items-center justify-center p-6 bg-white border-2 border-grey-200 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                  data-cat="penanaknasi"
                 >
                   <span
                     class="material-symbols-outlined text-primary text-4xl mb-2"
@@ -100,17 +121,35 @@
                 </button>
 
                 <button
-                  class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                  class="relative flex flex-col items-center justify-center p-6 bg-gray-100 border border-gray-200 rounded-lg shadow-sm cursor-not-allowed"
+                  disabled=""
                 >
+                  <div
+                    class="absolute top-1 right-1 bg-yellow-400 text-yellow-800 text-[10px] font-bold px-2 py-0.5 rounded-full"
+                  >
+                    Maintenance
+                  </div>
+                  <!-- <button
+                  class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                > -->
                   <span
                     class="material-symbols-outlined text-gray-500 text-4xl mb-2"
                     >tv</span
                   >
                   <span class="text-base font-bold text-gray-700">TV</span>
                 </button>
-                <button
+                <!-- <button
                   class="flex flex-col items-center justify-center p-6 bg-white border border-border-color rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                > -->
+                <button
+                  class="relative flex flex-col items-center justify-center p-6 bg-gray-100 border border-gray-200 rounded-lg shadow-sm cursor-not-allowed"
+                  disabled=""
                 >
+                  <div
+                    class="absolute top-1 right-1 bg-yellow-400 text-yellow-800 text-[10px] font-bold px-2 py-0.5 rounded-full"
+                  >
+                    Maintenance
+                  </div>
                   <span
                     class="material-symbols-outlined text-gray-500 text-4xl mb-2"
                     >floor_lamp</span
@@ -142,6 +181,18 @@
 
             <!-- Input data penggunaan -->
             <section>
+              <h2 class="text-2xl font-bold text-text-primary mb-6">
+                2. Masukkan Detail Penggunaan
+              </h2>
+              <div
+                id="inputContainer"
+                class="bg-white border border-border-color rounded-lg p-8 shadow-sm"
+              >
+                <!-- Inputan dinamis akan muncul di sini lewat JS -->
+              </div>
+            </section>
+            <!-- old container -->
+            <!-- <section>
               <h2 class="text-2xl font-bold text-text-primary mb-6">
                 2. Masukkan Detail Penggunaan
               </h2>
@@ -191,7 +242,7 @@
                       />
                       <span
                         class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-500"
-                        >Wh/jam</span
+                        >Wh</span
                       >
                     </div>
                     <p class="text-xs text-gray-500 mt-2">
@@ -255,7 +306,7 @@
                   </div>
                 </div>
               </div>
-            </section>
+            </section> -->
 
             <!-- Hasil Perhitungan -->
             <section>
