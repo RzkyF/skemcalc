@@ -2,14 +2,14 @@
 const kategoriList = {
   kipas: [
     { id: "daya", label: "Daya Kipas (W)", type: "number", satuan: "W" },
-    { id: "jampenggunaan", label: "Waktu Penggunaan", type: "number", satuan: "W" },
+    { id: "jampenggunaan", label: "Waktu Penggunaan", type: "number", satuan: "W", value:6.6 },
     { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1 },
   ],
   penanaknasi: [
     { id: "dayaMemasak", label: "Daya Memasak (Wh)", type: "number", satuan: "Wh" },
     { id: "dayaMenghangatkan", label: "Daya Menghangatkan (Wh/jam)", type: "number", satuan: "Wh/jam" },
-    { id: "siklusMemasak", label: "Siklus Memasak per Hari", type: "number" },
-    { id: "jamMenghangatkan", label: "Jam Menghangatkan per Hari", type: "number" },
+    { id: "siklusMemasak", label: "Siklus Memasak per Hari", type: "number", value:1},
+    { id: "jamMenghangatkan", label: "Jam Menghangatkan per Hari", type: "number", value: 5},
     { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1 },
   ],
 };
