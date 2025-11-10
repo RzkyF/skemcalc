@@ -1,16 +1,16 @@
 // daftar kategori dan field-nya
 const kategoriList = {
   kipas: [
-    { id: "daya", label: "Daya Kipas (W)", type: "number", satuan: "W", value: 50 },
-    { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 6.6 },
+    { id: "daya", label: "Daya Kipas (W)", type: "number", satuan: "W",min: 1, value: 50 },
+    { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 6.6, min: 1 },
     { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1 },
   ],
   penanaknasi: [
-    { id: "dayaMemasak", label: "Daya Memasak (Wh)", type: "number", satuan: "Wh", value: 250 },
-    { id: "dayaMenghangatkan", label: "Daya Menghangatkan (Wh/jam)", type: "number", satuan: "Wh/jam", value: 50 },
-    { id: "siklusMemasak", label: "Siklus Memasak per Hari", type: "number", value: 1 },
-    { id: "jamMenghangatkan", label: "Jam Menghangatkan per Hari", type: "number", value: 5 },
-    { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1 },
+    { id: "dayaMemasak", label: "Daya Memasak (Wh)", type: "number", satuan: "Wh", value: 250, min: 1 },
+    { id: "dayaMenghangatkan", label: "Daya Menghangatkan (Wh/jam)", type: "number", satuan: "Wh", value: 50, min: 1 },
+    { id: "siklusMemasak", label: "Siklus Memasak per Hari", type: "number",satuan : "x", value: 1, min: 1 },
+    { id: "jamMenghangatkan", label: "Jam Menghangatkan per Hari", type: "number",satuan: "Jam", value: 5, min: 1 },
+    { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1, min: 1 },
   ],
 };
 
@@ -121,7 +121,7 @@ document.getElementById("btnHitung").addEventListener("click", () => {
     tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
 
     hasil = (((Dm * Sm) + (Dh * Jh)) * 365 * tahun / 1000).toFixed(2);
-    rumus = `((${Dm} × ${Sm}) + (${Dh} × ${Jh})) × 365 × ${tahun} ÷ 1000`;
+    rumus = `(( Daya Memasak(${Dm}) × Siklus Memasak(${Sm})) + (Daya Menghangatkan(${Dh}) × (Waktu Menghangatkan(${Jh})) × ${tahun} Tahun(${tahun * 365}) ÷ 1000`;
   }
 
   // tampilkan hasil
