@@ -50,7 +50,7 @@ function renderInput(kategori) {
     } else {
       html += `
         <div class="relative">
-          <input type="${f.type}" id="${f.id}" class="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+          <input type="${f.type}" min="${f.min}" id="${f.id}" class="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
             value="${f.value || ""}">
           ${f.satuan ? `<span class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-500">${f.satuan}</span>` : ""}
         </div>`;
