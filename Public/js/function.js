@@ -1,16 +1,21 @@
 // daftar kategori dan field-nya
 const kategoriList = {
   kipas: [
-    { id: "daya", label: "Daya Kipas (W)", type: "number", satuan: "W",min: 1, value: 50 },
-    { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 6.6, min: 1 },
-    { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1 },
+    { id: "daya", label: "Daya Kipas (W)", type: "number", satuan: "W",min: 1, value: 50 ,required: true},
+    { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 6.6, min: 1 , required: true},
+    { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1, required: true },
   ],
   penanaknasi: [
-    { id: "dayaMemasak", label: "Daya Memasak (Wh)", type: "number", satuan: "Wh", value: 250, min: 1 },
-    { id: "dayaMenghangatkan", label: "Daya Menghangatkan (Wh/jam)", type: "number", satuan: "Wh", value: 50, min: 1 },
-    { id: "siklusMemasak", label: "Siklus Memasak per Hari", type: "number",satuan : "x", value: 1, min: 1 },
-    { id: "jamMenghangatkan", label: "Jam Menghangatkan per Hari", type: "number",satuan: "Jam", value: 5, min: 1 },
-    { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1, min: 1 },
+    { id: "dayaMemasak", label: "Konsumsi Energi untuk Memasak (Wh)", type: "number", satuan: "Wh", value: 165.49, min: 1 , required: true},
+    { id: "dayaMenghangatkan", label: "Konsumsi Energi untuk Menghangatkan (Wh)", type: "number", satuan: "Wh", value: 82.02, min: 1 ,required: true},
+    // { id: "siklusMemasak", label: "Siklus Memasak per Hari", type: "number",satuan : "x", value: 1, min: 1 },
+    // { id: "jamMenghangatkan", label: "Jam Menghangatkan per Hari", type: "number",satuan: "Jam", value: 5, min: 1 },
+    { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1, min: 1, required: true },
+  ],
+  ledswaballast: [
+    { id: "daya", label: "Daya Lampu (W)", type: "number", satuan: "W", min: 1, value: 2.79 ,required: true},
+    { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 8, min: 1 , required: true},
+    { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1, required: true },
   ],
 };
 
@@ -116,12 +121,24 @@ document.getElementById("btnHitung").addEventListener("click", () => {
   if (kategoriDipilih === "penanaknasi") {
     const Dm = parseFloat(document.getElementById("dayaMemasak").value) || 0;
     const Dh = parseFloat(document.getElementById("dayaMenghangatkan").value) || 0;
-    const Sm = parseFloat(document.getElementById("siklusMemasak").value) || 0;
-    const Jh = parseFloat(document.getElementById("jamMenghangatkan").value) || 0;
+    // const Sm = parseFloat(document.getElementById("siklusMemasak").value) || 0;
+    // const Jh = parseFloat(document.getElementById("jamMenghangatkan").value) || 0;
     tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
 
-    hasil = (((Dm * Sm) + (Dh * Jh)) * 365 * tahun / 1000).toFixed(2);
-    rumus = `(( Daya Memasak(${Dm}) × Siklus Memasak(${Sm})) + (Daya Menghangatkan(${Dh}) × (Waktu Menghangatkan(${Jh})) × ${tahun} Tahun(${tahun * 365}) ÷ 1000`;
+    // hasil = (((Dm * Sm) + (Dh * Jh)) * 365 * tahun / 1000).toFixed(2);
+    hasil = ((Dm + Dh ) * 365 * tahun / 1000).toFixed(2);
+    // rumus = `(( Daya Memasak(${Dm}) × Siklus Memasak(${Sm})) + (Daya Menghangatkan(${Dh}) × (Waktu Menghangatkan(${Jh})) × ${tahun} Tahun(${tahun * 365}) ÷ 1000`;
+    rumus = `( Daya Memasak(${Dm}) + Daya Menghangatkan(${Dh})) × ${tahun} Tahun(${tahun * 365}) ÷ 1000`;
+    
+  }
+
+  if (kategoriDipilih === "ledswaballast") {
+    const daya = parseFloat(document.getElementById("daya").value) || 0;
+    const jam = parseFloat(document.getElementById("jampenggunaan").value) || 0;
+    tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
+
+    hasil = ((daya * jam * tahun * 365) / 1000).toFixed(2);
+    rumus = `( Daya(${daya} W) x Pemakaian(${jam} jam) × ${tahun} Tahun) ÷ 1000`;
   }
 
   // tampilkan hasil
