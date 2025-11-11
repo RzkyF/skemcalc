@@ -80,6 +80,13 @@ buttons.forEach(btn => {
   btn.addEventListener("click", () => {
     kategoriDipilih = btn.dataset.cat.toLowerCase();
     renderInput(kategoriDipilih);
+
+    
+     setTimeout(() => {
+    const target = document.getElementById("inputContainer");
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+
     hasilEl.textContent = "";
     rumusEl.textContent = "";
     hasilEl.style.display = "none";
