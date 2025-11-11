@@ -22,6 +22,11 @@ const kategoriList = {
     { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 8, min: 1 , required: true},
     { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1, required: true },
   ],
+  ledluminair: [
+    { id: "daya", label: "Daya Lampu (W)", type: "number", satuan: "W", min: 1, value: 10 ,required: true},
+    { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 12, min: 1 , required: true},
+    { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1, required: true },
+  ],
 };
 
 // container input
@@ -145,6 +150,15 @@ document.getElementById("btnHitung").addEventListener("click", () => {
   }
 
   if (kategoriDipilih === "ledswaballast") {
+    const daya = parseFloat(document.getElementById("daya").value) || 0;
+    const jam = parseFloat(document.getElementById("jampenggunaan").value) || 0;
+    tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
+
+    hasil = ((daya * jam * tahun * 365) / 1000).toFixed(2);
+    rumus = `( Daya(${daya} W) x Pemakaian(${jam} jam) × ${tahun} Tahun(${tahun * 365} Hari) ÷ 1000`;
+  }
+
+  if (kategoriDipilih === "ledluminair") {
     const daya = parseFloat(document.getElementById("daya").value) || 0;
     const jam = parseFloat(document.getElementById("jampenggunaan").value) || 0;
     tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
