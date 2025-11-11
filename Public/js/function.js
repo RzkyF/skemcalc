@@ -83,7 +83,7 @@ buttons.forEach(btn => {
 
     
      setTimeout(() => {
-    const target = document.getElementById("inputContainer");
+    const target = document.getElementById("DetailPenggunaan");
     target.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 100);
 
