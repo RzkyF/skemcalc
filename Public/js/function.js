@@ -145,15 +145,15 @@ document.getElementById("btnHitung").addEventListener("click", () => {
     // hasil = (((Dm * Sm) + (Dh * Jh)) * 365 * tahun / 1000).toFixed(2);
     hasil = ((Dm + Dh ) * 365 * tahun / 1000).toFixed(2);
     // rumus = `(( Daya Memasak(${Dm}) × Siklus Memasak(${Sm})) + (Daya Menghangatkan(${Dh}) × (Waktu Menghangatkan(${Jh})) × ${tahun} Tahun(${tahun * 365}) ÷ 1000`;
-    rumus = `( Daya Memasak(${Dm}) + Daya Menghangatkan(${Dh})) × ${tahun} Tahun(${tahun * 365} Hari) ÷ 1000`;
+    rumus = `( Konsumsi Energi Memasak(${Dm} wh) + Konsumsi Energi Menghangatkan(${Dh} wh)) × ${tahun} Tahun(${tahun * 365} Hari) ÷ 1000`;
     
   }
   if (kategoriDipilih === "airconditioner") {
     const daya = parseFloat(document.getElementById("daya").value) || 0;
     const jam = parseFloat(document.getElementById("jampenggunaan").value) || 0;
     tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
-    hasil = ((daya * jam * tahun * 365) / 1000).toFixed(2);
-    rumus = `( Daya(${daya} W) x Pemakaian(${jam} jam) × ${tahun} Tahun(${tahun * 365} Hari) ÷ 1000`;
+    hasil = toFixedDown((daya * jam * tahun * 365) / 1000, 2);
+    rumus = `( Daya(${daya} W) x Asumsi Pemakaian(${jam} jam) × ${tahun} Tahun(${tahun * 365} Hari) ÷ 1000`;
   }
 
   if (kategoriDipilih === "ledswaballast") {
@@ -161,8 +161,8 @@ document.getElementById("btnHitung").addEventListener("click", () => {
     const jam = parseFloat(document.getElementById("jampenggunaan").value) || 0;
     tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
 
-    hasil = ((daya * jam * tahun * 365) / 1000).toFixed(2);
-    rumus = `( Daya(${daya} W) x Pemakaian(${jam} jam) × ${tahun} Tahun(${tahun * 365} Hari) ÷ 1000`;
+    hasil = toFixedDown((daya * jam * tahun * 365) / 1000, 2);
+    rumus = `( Daya(${daya} W) x Asumsi Pemakaian(${jam} jam) × ${tahun} Tahun(${tahun * 365} Hari) ÷ 1000`;
   }
 
   if (kategoriDipilih === "ledluminair") {
@@ -170,8 +170,8 @@ document.getElementById("btnHitung").addEventListener("click", () => {
     const jam = parseFloat(document.getElementById("jampenggunaan").value) || 0;
     tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
 
-    hasil = ((daya * jam * tahun * 365) / 1000).toFixed(2);
-    rumus = `( Daya(${daya} W) x Pemakaian(${jam} jam) × ${tahun} Tahun(${tahun * 365} Hari) ÷ 1000`;
+    hasil = toFixedDown((daya * jam * tahun * 365) / 1000, 2);
+    rumus = `( Daya(${daya} W) x Asumsi Pemakaian(${jam} jam) × ${tahun} Tahun(${tahun * 365} Hari) ÷ 1000`;
   }
 
   // tampilkan hasil
@@ -179,6 +179,12 @@ document.getElementById("btnHitung").addEventListener("click", () => {
   animasiHitung(hasil, teksTahun);
   tampilkanRumus(rumus);
 });
+
+function toFixedDown(num, digits) {
+  const re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)");
+  const match = num.toString().match(re);
+  return match ? parseFloat(match[1]) : num;
+}
 
 // animasi angka bergulir
 function animasiHitung(angka, teksTahun) {
