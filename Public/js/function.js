@@ -2,7 +2,7 @@
 const kategoriList = {
   kipas: [
     { id: "daya", label: "Daya Kipas (W)", type: "number", satuan: "W", min: 1, value: 50 ,required: true},
-    { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 6.6, min: 1 , required: true},
+    { id: "jampenggunaan", label: "Asumsi Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 6.6, min: 1 , required: true},
     { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1, required: true },
   ],
   penanaknasi: [
@@ -14,17 +14,17 @@ const kategoriList = {
   ],
   airconditioner: [
     { id: "daya", label: "Daya AC (W)", type: "number", satuan: "W", min: 1, value: 820.00 ,required: true},
-    { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 8, min: 1 , required: true},
+    { id: "jampenggunaan", label: "Asumsi Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 8, min: 1 , required: true},
     { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1, required: true },
   ],
   ledswaballast: [
     { id: "daya", label: "Daya Lampu (W)", type: "number", satuan: "W", min: 1, value: 2.79 ,required: true},
-    { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 8, min: 1 , required: true},
+    { id: "jampenggunaan", label: "Asumsi Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 8, min: 1 , required: true},
     { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1, required: true },
   ],
   ledluminair: [
     { id: "daya", label: "Daya Lampu (W)", type: "number", satuan: "W", min: 1, value: 10 ,required: true},
-    { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 12, min: 1 , required: true},
+    { id: "jampenggunaan", label: "Asumsi Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 12, min: 1 , required: true},
     { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1, required: true },
   ],
 };
