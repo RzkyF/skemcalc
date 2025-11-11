@@ -120,7 +120,7 @@ document.getElementById("btnHitung").addEventListener("click", () => {
     tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
 
     hasil = ((daya * jam * tahun * 365) / 1000).toFixed(2);
-    rumus = `( Daya(${daya} W) x Pemakaian(${jam} jam) × ${tahun} Tahun) ÷ 1000`;
+    rumus = `( Daya(${daya} W) x Pemakaian(${jam} jam) × ${tahun} Tahun(${tahun * 365}) ÷ 1000`;
   }
 
   if (kategoriDipilih === "penanaknasi") {
@@ -141,7 +141,7 @@ document.getElementById("btnHitung").addEventListener("click", () => {
     const jam = parseFloat(document.getElementById("jampenggunaan").value) || 0;
     tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
     hasil = ((daya * jam * tahun * 365) / 1000).toFixed(2);
-    rumus = `( Daya(${daya} W) x Pemakaian(${jam} jam) × ${tahun} Tahun) ÷ 1000`;
+    rumus = `( Daya(${daya} W) x Pemakaian(${jam} jam) × ${tahun} Tahun(${tahun * 365}) ÷ 1000`;
   }
 
   if (kategoriDipilih === "ledswaballast") {
@@ -150,7 +150,7 @@ document.getElementById("btnHitung").addEventListener("click", () => {
     tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
 
     hasil = ((daya * jam * tahun * 365) / 1000).toFixed(2);
-    rumus = `( Daya(${daya} W) x Pemakaian(${jam} jam) × ${tahun} Tahun) ÷ 1000`;
+    rumus = `( Daya(${daya} W) x Pemakaian(${jam} jam) × ${tahun} Tahun(${tahun * 365}) ÷ 1000`;
   }
 
   // tampilkan hasil
