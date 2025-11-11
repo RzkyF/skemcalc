@@ -1,7 +1,7 @@
 // daftar kategori dan field-nya
 const kategoriList = {
   kipas: [
-    { id: "daya", label: "Daya Kipas (W)", type: "number", satuan: "W",min: 1, value: 50 ,required: true},
+    { id: "daya", label: "Daya Kipas (W)", type: "number", satuan: "W", min: 1, value: 50 ,required: true},
     { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 6.6, min: 1 , required: true},
     { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1, required: true },
   ],
