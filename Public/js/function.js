@@ -12,6 +12,11 @@ const kategoriList = {
     // { id: "jamMenghangatkan", label: "Jam Menghangatkan per Hari", type: "number",satuan: "Jam", value: 5, min: 1 },
     { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1, min: 1, required: true },
   ],
+  airconditioner: [
+    { id: "daya", label: "Daya AC (W)", type: "number", satuan: "W", min: 1, value: 820.00 ,required: true},
+    { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 8, min: 1 , required: true},
+    { id: "pemakaian", label: "Pemakaian (tahun)", type: "range", min: 1, max: 10, value: 1, required: true },
+  ],
   ledswaballast: [
     { id: "daya", label: "Daya Lampu (W)", type: "number", satuan: "W", min: 1, value: 2.79 ,required: true},
     { id: "jampenggunaan", label: "Waktu Penggunaan per Hari (jam)", type: "number", satuan: "jam", value: 8, min: 1 , required: true},
@@ -130,6 +135,13 @@ document.getElementById("btnHitung").addEventListener("click", () => {
     // rumus = `(( Daya Memasak(${Dm}) × Siklus Memasak(${Sm})) + (Daya Menghangatkan(${Dh}) × (Waktu Menghangatkan(${Jh})) × ${tahun} Tahun(${tahun * 365}) ÷ 1000`;
     rumus = `( Daya Memasak(${Dm}) + Daya Menghangatkan(${Dh})) × ${tahun} Tahun(${tahun * 365}) ÷ 1000`;
     
+  }
+  if (kategoriDipilih === "airconditioner") {
+    const daya = parseFloat(document.getElementById("daya").value) || 0;
+    const jam = parseFloat(document.getElementById("jampenggunaan").value) || 0;
+    tahun = parseFloat(document.getElementById("pemakaian").value) || 1;
+    hasil = ((daya * jam * tahun * 365) / 1000).toFixed(2);
+    rumus = `( Daya(${daya} W) x Pemakaian(${jam} jam) × ${tahun} Tahun) ÷ 1000`;
   }
 
   if (kategoriDipilih === "ledswaballast") {
